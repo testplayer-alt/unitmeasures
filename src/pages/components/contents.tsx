@@ -8,7 +8,7 @@ type Props = {
     unclick?: boolean;
 };
 
-export const Contents = ({ className, href, src, content, unclick }: Props) => {
+const Contents = ({ className, href, src, content, unclick }: Props) => {
     return (
         <>
             {unclick ? (
@@ -43,3 +43,5 @@ export const Contents = ({ className, href, src, content, unclick }: Props) => {
         </>
     );
 };
+
+export default Contents;

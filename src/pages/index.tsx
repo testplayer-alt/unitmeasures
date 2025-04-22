@@ -1,10 +1,9 @@
 import { useAuth } from "@/context/AuthContext";
 import $ from 'jquery';
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Buttons from "./components/button_ui";
-import { Contents } from "./components/contents";
+import Contents from "./components/contents";
 
 export default function ProtectedPage() {
   const { user, loading } = useAuth();

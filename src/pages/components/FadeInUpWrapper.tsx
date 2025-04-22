@@ -22,3 +22,5 @@ export const FadeInUpWrapper = ({ children, className }: Props) => {
         </div>
     );
 };
+
+export default FadeInUpWrapper;

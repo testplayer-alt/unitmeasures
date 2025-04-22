@@ -36,18 +36,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         try {
             const result = await signInWithPopup(auth, provider);
             setUser(result.user);
-        } catch (error: any) {
+        } catch (error) {
             console.error("Google認証エラー:", error);
-            if (error.code === 'auth/cancelled-popup-request') {
-                // ユーザーがポップアップを閉じた場合の処理
-                alert("Google ログインがキャンセルされました。もう一度お試しください。");
-            } else if (error.code === 'auth/popup-blocked') {
-                // ポップアップブロッカーによってブロックされた場合の処理
-                alert("ポップアップブロッカーが有効になっている可能性があります。一時的に無効にするか、サイトを例外に追加してください。");
-            } else {
-                // その他のエラー
-                alert("Google ログインでエラーが発生しました。しばらくしてからもう一度お試しください。");
-            }
         }
     };
 
