@@ -1,20 +1,15 @@
 import { useAuth } from "@/context/AuthContext";
+import $ from 'jquery';
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Logout from "@/pages/components/logout";
-import UserProfile from "@/pages/components/UserProfile";
-import Image from "next/image";
 import Buttons from "./components/button_ui";
-import { FadeInUpWrapper } from "./components/FadeInUpWrapper";
-import $ from 'jquery';
 import { Contents } from "./components/contents";
 
 export default function ProtectedPage() {
   const { user, loading } = useAuth();
-  const router = useRouter();
   const { logout } = useAuth();
   const { loginWithGoogle } = useAuth();
-  const [comment, setomment] = useState(false);
   const commentlist = ["教材作成のサポートをします", "英語覚えられてる？"];
   const [commenttext, setcommenttext] = useState("");
 
@@ -22,7 +17,6 @@ export default function ProtectedPage() {
     setcommenttext(commentlist[Math.floor(Math.random() * ((commentlist.length - 1 + 1) - 0)) + 0]);
     $(document).ready(function () {
       setTimeout(() => {
-        setomment(true);
         $('.comment').fadeIn(1000);
       }, 1000);
     });
