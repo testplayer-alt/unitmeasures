@@ -30,7 +30,7 @@ export default function ProtectedPage() {
         {user ? <Buttons onClick={logout} text="ログアウト"></Buttons> : <Buttons onClick={loginWithGoogle} text="ログイン"></Buttons>}
       </div>
       <div className="h-[100vh] grid grid-cols-1 grid-rows-3">
-        <div className=" m-auto"></div>
+        <div className="m-auto"></div>
         <div>
           <Image
             src={"/images/title.png"}
