@@ -2,13 +2,12 @@ import { useAuth } from "@/context/AuthContext";
 import $ from 'jquery';
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Buttons from "./components/button_ui";
 import Contents from "./components/contents";
+import Header from "./components/header";
+import Link from "next/link";
 
 export default function ProtectedPage() {
   const { user, loading } = useAuth();
-  const { logout } = useAuth();
-  const { loginWithGoogle } = useAuth();
   const commentlist = ["教材作成のサポートをします", "英語覚えられてる？"];
   const [commenttext, setcommenttext] = useState("");
 
@@ -25,10 +24,7 @@ export default function ProtectedPage() {
 
   return (
     <div>
-      <div className="header fixed w-full h-[5rem] bg-[#cdfeff] grid grid-cols-5 grid-rows-1 z-50">
-        <section className=" col-span-4"></section>
-        {user ? <Buttons onClick={logout} text="ログアウト"></Buttons> : <Buttons onClick={loginWithGoogle} text="ログイン"></Buttons>}
-      </div>
+      <Header title={"ホーム"} />
       <div className="h-[100vh] grid grid-cols-1 grid-rows-3">
         <div className="m-auto"></div>
         <div>
@@ -41,7 +37,6 @@ export default function ProtectedPage() {
           ></Image>
           <p className="comment text-center text-[2rem] mt-[5px] hidden">{commenttext}</p>
         </div>
-
       </div>
       <div className="">
         <div className=" whatunit content w-[80%] m-auto bg-[#ffffff] rounded-[5px] border-2">
@@ -55,7 +50,7 @@ export default function ProtectedPage() {
               現在行なっているサポート対象は<br />
               <br />
               <ul>
-                <li>・<a href="#" className=" text-[#4f61ff] font-bold border-b-[1px] border-[#4f61ff] hover:text-[#8995ff] hover:border-[#8995ff]">英語コアスキル</a><br /></li>
+                <li>・<Link href="/content/English" className=" text-[#4f61ff] font-bold border-b-[1px] border-[#4f61ff] hover:text-[#8995ff] hover:border-[#8995ff]">英語コアスキル</Link><br /></li>
               </ul>
               <br />
               です。<br />
@@ -66,7 +61,8 @@ export default function ProtectedPage() {
         <div className="whatsupport w-full">
           <h1 className=" text-center font-bold text-[3rem] mt-[3rem]">サポート教材一覧</h1>
           <div className="contentslist grid grid-cols-4 w-[90%] m-auto">
-            <Contents className={""} href={"#"} src={"/images/title.png"} content={`英語コアスキル\nここでは英単語を覚えます。\n`} />
+            <Contents className={""} href={"/content/analysis"} src={"/images/title.png"} title="講義分析・対策" content={`\n\nあなたの時間割を分析し、単位取得までのみちしるべを提示します\n`} />
+            <Contents className={""} href={"/content/English"} src={"/images/title.png"} title="ビジネス英語実習1a&b" content={`\n\nここでは英単語を覚えます。\n`} />
             <Contents className={""} href={"#"} src={""} unclick />
             <Contents className={""} href={"#"} src={""} unclick />
             <Contents className={""} href={"#"} src={""} unclick />

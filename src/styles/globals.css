@@ -108,8 +108,12 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .headimg {
+    height: 40%;
+  }
+
   .header section {
-    grid-column: span 2 / span 2;
+    grid-column: span 1 / span 1;
   }
 
   .comment {
@@ -153,8 +157,12 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .headimg {
+    height: 60%;
+  }
+
   .header section {
-    grid-column: span 2 / span 2;
+    grid-column: span 1 / span 1;
   }
 
   .comment {
@@ -199,7 +207,7 @@ body {
   }
 
   .header section {
-    grid-column: span 2 / span 2;
+    grid-column: span 1 / span 1;
   }
 
   .comment {
@@ -244,7 +252,7 @@ body {
   }
 
   .header section {
-    grid-column: span 2 / span 2;
+    grid-column: span 1 / span 1;
   }
 
   .comment {
