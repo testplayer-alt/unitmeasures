@@ -28,15 +28,29 @@ export default function ProtectedPage() {
 
     const handleSubjectChange = (subject: string, tag: number) => {
         const newSchedule = [...schedule];
+
         if (subject !== "空きコマ") {
             newSchedule[tag] = subject;
-
         } else {
             newSchedule[tag] = "";
         }
+
+        if (subject.includes("プログラミング")) {
+            console.log("プログラミング");
+            if (tag + 1 < newSchedule.length) {
+                newSchedule[tag + 1] = subject;
+            }
+        } else if (subject.includes("イノベーション特講")) {
+            console.log("イノベーション");
+            if (tag + 1 < newSchedule.length) {
+                newSchedule[tag + 1] = subject;
+            }
+        }
+
         setSchedule(newSchedule);
         console.log(`Tag ${tag} の授業が ${subject} に変更されました`);
     };
+
 
     const analysis = () => {
         console.log(schedule);
