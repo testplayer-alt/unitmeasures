@@ -1,12 +1,8 @@
 import { useAuth } from "@/context/AuthContext";
-import $ from 'jquery';
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import Contents from "../components/contents";
-import Header from "../components/header"
+import Header from "../../components/ui/header";
 
 export default function ProtectedPage() {
-    const { user, loading } = useAuth();
+    const { loading } = useAuth();
 
     if (loading) return <p>Loding...</p>;
 

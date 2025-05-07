@@ -2,12 +2,12 @@ import { useAuth } from "@/context/AuthContext";
 import $ from 'jquery';
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Contents from "./components/contents";
-import Header from "./components/header";
+import Contents from "../components/ui/contents";
+import Header from "../components/ui/header";
 import Link from "next/link";
 
 export default function ProtectedPage() {
-  const { user, loading } = useAuth();
+  const { loading } = useAuth();
   const commentlist = ["教材作成のサポートをします", "英語覚えられてる？"];
   const [commenttext, setcommenttext] = useState("");
 

@@ -27,7 +27,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/components/UserProfile.js"
+    "src/components/ui/UserProfile.js"
   ],
   "exclude": [
     "node_modules"

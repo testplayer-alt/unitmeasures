@@ -1,29 +1,13 @@
 'use cliant'
 import { useAuth } from "@/context/AuthContext";
-import $ from 'jquery';
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import Contents from "../components/contents";
-import Header from "../components/header"
-import Class from "../components/class";
-import * as React from "react"
-import { Minus, Plus } from "lucide-react"
+import { useState } from "react";
+import Class from "../../components/ui/class";
+import Header from "../../components/ui/header";
 
-import { Button } from "@/components/ui/button"
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer"
-import Buttons from "../components/button_ui";
+import Buttons from "../../components/ui/button_ui";
 
 export default function ProtectedPage() {
-    const { user, loading } = useAuth();
+    const { loading } = useAuth();
     const [schedule, setSchedule] = useState(Array(30).fill("")); // 時間割の状態を保持する配列
 
     const handleSubjectChange = (subject: string, tag: number) => {

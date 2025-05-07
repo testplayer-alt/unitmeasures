@@ -1,17 +1,16 @@
 import { useAuth } from "@/context/AuthContext";
-import { useEffect, useState } from "react";
-import Buttons from "./button_ui";
+import { motion } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from 'framer-motion';
-import $ from 'jquery';
+import { useEffect, useState } from "react";
+import Buttons from "./button_ui";
 
 type Props = {
     title: string;
 }
 
 export default function Header({ title }: Props) {
-    const { user, loading } = useAuth();
+    const { user } = useAuth();
     const [command, setcommand] = useState(false);
     const { logout } = useAuth();
     const { loginWithGoogle } = useAuth();
