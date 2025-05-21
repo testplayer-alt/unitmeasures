@@ -1,5 +1,7 @@
+// firebaseConfig.ts
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // Firestore を追加
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,5 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app); // ← これ！
 
-export { auth, provider, signInWithPopup };
+export { auth, provider, signInWithPopup, db };

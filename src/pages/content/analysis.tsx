@@ -1,16 +1,46 @@
 'use cliant'
 import { useAuth } from "@/context/AuthContext";
-import { useState } from "react";
 import Class from "../../components/ui/class";
 import Header from "../../components/ui/header";
+import { doc, getDoc, setDoc, serverTimestamp, addDoc } from "firebase/firestore";
+import { auth, provider, db } from "@/config/firebaseConfig";
+import { User, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 import Buttons from "../../components/ui/button_ui";
 
 export default function ProtectedPage() {
     const { loading } = useAuth();
     const [schedule, setSchedule] = useState(Array(30).fill("")); // 時間割の状態を保持する配列
+    const [user, setUser] = useState<User | null>(null);
 
-    const handleSubjectChange = (subject: string, tag: number) => {
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const fetchSchedule = async () => {
+            const userRef = doc(db, "users", user.uid);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+                const data = userSnap.data();
+                if (data.schedule) {
+                    setSchedule(data.schedule);
+                }
+            }
+        };
+
+        fetchSchedule();
+    }, [user]);
+
+    const handleSubjectChange = async (subject: string, tag: number) => {
         const newSchedule = [...schedule];
 
         if (subject !== "空きコマ") {
@@ -33,7 +63,19 @@ export default function ProtectedPage() {
 
         setSchedule(newSchedule);
         console.log(`Tag ${tag} の授業が ${subject} に変更されました`);
+
+        if (user) {
+            console.log("データベース");
+            const userRef = doc(db, "users", user.uid); // ← DocumentReference
+            await setDoc(userRef, {
+                schedule: newSchedule,
+                updatedAt: serverTimestamp(),
+            }, { merge: true }); // ← 既存フィールドは残す
+            console.log("変更完了");
+        }
+
     };
+
 
 
     const analysis = () => {
