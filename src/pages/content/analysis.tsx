@@ -1,11 +1,11 @@
 'use cliant'
+import { auth, db } from "@/config/firebaseConfig";
 import { useAuth } from "@/context/AuthContext";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import Class from "../../components/ui/class";
 import Header from "../../components/ui/header";
-import { doc, getDoc, setDoc, serverTimestamp, addDoc } from "firebase/firestore";
-import { auth, provider, db } from "@/config/firebaseConfig";
-import { User, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 import Buttons from "../../components/ui/button_ui";
 
